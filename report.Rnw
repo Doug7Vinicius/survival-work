@@ -1,0 +1,218 @@
+\documentclass[a4paper, oneside]{book}
+%--------------------------------------
+%Pacotes utilizados
+\usepackage[brazil,brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath} %o comando amsmath habilita as funções do modo matemático.
+\usepackage{graphicx} %para a inserção de imagens no formato EPS.
+\usepackage{amsfonts} %define alguns estilos de letras para o ambiente matemático.
+\usepackage{amssymb} %para a utilização de símbolos.
+\usepackage[all]{xy} %construção de diagramas de setas e molduras.
+\usepackage[normalem]{ulem} %habilita o sublinhado curvo nas palavras.
+\usepackage{color} %para habilitar o pacote das cores.
+\usepackage[top=3cm,left=3cm,right=2cm,bottom=2cm]{geometry} %dimensionar as páginas.
+\usepackage{titlesec}
+\usepackage{indentfirst}
+%\usepackage[numbers]{natbib}
+\usepackage[num]{abntex2cite}
+%\usepackage{bookmark}
+%\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=black,linkcolor=black,urlcolor=blue,filecolor=black,bookmarksopen=true]{hyperref}
+\usepackage{titleps}
+%----------------------------------------------
+%
+\usepackage[colorlinks = true,
+linkcolor = blue,
+urlcolor  = blue,
+citecolor = blue,
+anchorcolor = blue]{hyperref}
+
+\usepackage[nottoc,numbib]{tocbibind} 
+
+
+\setcounter{secnumdepth}{3} %Numera as subsubsection. 
+\setcounter{tocdepth}{3}    % Coloca no sumário as subsubsection
+
+%-----------------------------------------------
+%Ajustando o número de contagem de capítulos.
+\titleformat{\chapter}%
+  {\normalfont\bfseries\Huge}{\thechapter.}{10pt}{}
+\newpagestyle{mystyle}{
+  \sethead[][\thechapter.\enspace\chaptertitle][]{}{\thesection~\sectiontitle}{}
+\setfoot{}{\thepage}{}}
+
+%
+%------------------------------------------------------------------------------------
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Capa
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage} %iniciando a "capa"
+	\begin{center} %centralizar o texto abaixo
+		\begin{figure}[!htb]
+			\includegraphics[width=2cm]{img/unir-logo}
+			\centering
+		\end{figure}
+		{\large \bf Universidade Federal de Rondônia}\\[0.35cm] 
+		{\large \bf Departamento de Matemática e Estatística}\\[0.35cm] 
+		{\large \bf Bacharelado em Estatística}\\[2.5cm]  
+		
+		{\large \bf Edimar \\ Jossivana Macedo \\ Douglas Vinícius}\\[5cm]
+		{\bf \huge Relatório do Trabalho de Análise de Sobrevivência}\\[9.5cm] % o comando \bf deixa o texto entre chaves em negrito. O comando \huge deixa o texto grande
+		{\large \bf Ji-Paraná}\\[0.2cm]
+		{\large \bf 2019}
+	\end{center}
+\end{titlepage}
+%término da "capa"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Folha de Rosto
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+	\vfill 
+	\begin{center}
+		{\large Edimar \\ Jossivana Macedo \\ Douglas Vinícius} \\[5cm]
+		{\Huge  Relatório do Trabalho de Análise de Sobrevivência}\\[4.0cm]
+		\hspace{.45\textwidth} % posicionando a minipage %largura da ?rea do texto (linha)
+		\begin{minipage}{.45\textwidth}
+Relatório apresentado à Disciplina de Análise de Sobrevivência do Curso de Bacharelado em Estatística, da Universidade Federal de Rondônia - UNIR, para obtenção de aprovação.
+		\end{minipage}
+		\vfill
+		{\large Orientador:\\ Prof. Dr. 
+		}\\[1.0cm]
+		{\large Ji-Paraná}\\[0.2cm]
+		{\large 2019}
+	\end{center}
+\end{titlepage}
+
+%fim da folha de rosto
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+%sumário
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents 	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\listoffigures %lista de figuras
+%%%%%%%%%%%%%%%%%%%
+
+\addcontentsline{toc}{chapter}{}      %manually add to TOC
+
+
+%texto
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \chapter{Introdução}
+  
+Iniciando...rsrsrs
+
+
+  \chapter{Descrição do Banco de Dados}
+  
+
+  
+  
+  \chapter{}
+  
+    \section{Carregar os dados}
+    
+Esse primeiro bloco de código carrega os pacotes necessários, juntamente com o veteran conjunto de dados do survivalpacote que contém dados de um estudo randomizado de dois tratamentos para câncer de pulmão.
+
+<<script1, echo=TRUE, message=FALSE>>=
+library(survival)
+library(ranger)
+library(ggplot2)
+library(dplyr)
+library(ggfortify)
+#------------
+data(veteran)
+head(veteran)
+@
+
+
+
+    \section{Estimador de Kaplan-Meier}
+    
+<<script2, echo=TRUE>>=
+# Kaplan Meier Survival Curve
+km <- with(veteran, Surv(time, status))
+head(km,80)
+@
+
+
+<<script3, echo=TRUE, fig.align='center',fig.height=4,fig.width=6,fig = TRUE>>=
+km_fit <- survfit(Surv(time, status) ~ 1, data=veteran)
+summary(km_fit, times = c(1,30,60,90*(1:10)))
+
+autoplot(km_fit)
+@
+
+
+<<script4, echo=TRUE, fig.align='center',fig.height=4,fig.width=6,fig = TRUE>>=
+km_trt_fit <- survfit(Surv(time, status) ~ trt, data=veteran)
+autoplot(km_trt_fit)
+@
+
+
+<<script5, echo=TRUE, fig.align='center',fig.height=4,fig.width=6,fig = TRUE>>=
+vet <- mutate(veteran, AG = ifelse((age < 60), "LT60", "OV60"),
+              AG = factor(AG),
+              trt = factor(trt,labels=c("standard","test")),
+              prior = factor(prior,labels=c("N0","Yes")))
+
+km_AG_fit <- survfit(Surv(time, status) ~ AG, data=vet)
+autoplot(km_AG_fit)
+@
+
+
+
+      
+      
+      
+      
+      \section{Modelo de Riscos Proporcionais de Cox}
+      
+<<script6, echo=TRUE, fig.align='center',fig.height=4,fig.width=6,fig = TRUE>>=
+# Fit Cox Model
+cox <- coxph(Surv(time, status) ~ trt + celltype + karno                   + diagtime + age + prior , data = vet)
+summary(cox)
+
+cox_fit <- survfit(cox)
+#plot(cox_fit, main = "cph model", xlab="Days")
+autoplot(cox_fit)
+@
+
+
+
+<<script7, echo=TRUE, fig.align='center',fig.height=4,fig.width=6,fig = TRUE>>=
+aa_fit <-aareg(Surv(time, status) ~ trt + celltype +
+                 karno + diagtime + age + prior , 
+                 data = vet)
+aa_fit
+
+#summary(aa_fit)  # provides a more complete summary of results
+autoplot(aa_fit)
+@
+
+
+      
+  \chapter{Resultados e Discusões}
+
+  
+  
+  
+  \chapter{Considerações Finais}
+  
+  
+
+\bibliography{bibliography}
+
+\end{document}

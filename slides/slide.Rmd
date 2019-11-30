@@ -1,0 +1,66 @@
+---
+title: "Trabalho de Análise de Sobrevivência"
+subtitle: ""
+author: Edimar, Jossivana Macedo, Douglas Vinícius
+institute: Universidade Federal de Rondônia
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+fontsize: 9pt
+output:
+  beamer_presentation:
+    theme: "Madrid"
+    colortheme: "whale"
+    fonttheme: "structurebold"
+    incremental: false
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(message = FALSE, 
+                      warning = FALSE, 
+                      echo = FALSE, 
+                      fig.align = 'center')
+library(RefManageR)
+library(tidyverse)
+bibs <- ReadBib("bio.bib", check = FALSE)
+```
+
+## Partes
+
+\begin{itemize}
+  \item Introdução
+  \item Banco de dados
+  \item 
+\end{itemize}
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
+## Referências
+
+```{r, results='asis'}
+print(bibs[key = c("")], 
+      .opts = list(check.entries = FALSE, 
+                   style = "latex", 
+                   bib.style = "authoryear"))
+```

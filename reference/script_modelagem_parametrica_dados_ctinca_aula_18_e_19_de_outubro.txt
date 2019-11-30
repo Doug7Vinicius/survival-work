@@ -1,0 +1,258 @@
+require(survival)
+
+dados<-read.table(file.choose(), header = TRUE,sep=" ")
+
+dim(dados)
+head(dados)
+tempo<-dados$tempo
+ctincn=length(tempo)
+hist(tempo,xlab="Tempo de sobreviv?ncia em dias",
+     ylab="Frequ?ncia de pacientes",main="")
+
+censura<-dados$status
+sexo<-(dados$sexo)
+idade<-dados$idade
+tumor<-(dados$gptumor)
+ppeso<-(dados$desnut)
+comorbi<-(dados$comorbi)
+leucopenia<-(dados$leucopenia)
+
+
+KM<-survfit(Surv(tempo,censura)~1, conf.int=F)
+summary(KM)
+plot(KM,conf.int=F, xlab="Tempo", ylab="S(t)",mark.time = T)
+
+
+KMs<-survfit(Surv(tempo,censura)~sexo, conf.int=F)
+summary(KMs)
+plot(KMs,conf.int=F, xlab="Tempo", ylab="S(t)",lty=c(1,2),col=c(1,2))
+legend("topright",cex=0.6,lty=c(1,2),c("Feminino","Masculino"),col=c(1,2))
+
+#survdiff(Surv(tempo,censura)~sexo, rho=0)    
+# rho = 0 considera o teste de log-rank#
+
+survdiff(Surv(tempo,censura)~sexo, rho=1)    
+# rho = 1 considera o teste similar ao de Wilcoxon#
+
+#########COVARIAVEL TUMOR
+KMe<-survfit(Surv(tempo,censura)~tumor, conf.int=F)
+summary(KMe)
+plot(KMe,conf.int=F, xlab="Tempo", ylab="S(t)",lty=c(2,3,4),col=c(2,3,4))
+legend("topright",lty=c(2,3,4), cex=0.75,c("Hemato","Loco","Mtx"),
+       col=c(2,3,4))
+
+
+survdiff(Surv(tempo,censura)~tumor, rho=1)
+
+########## COVARIAVEL PESO
+KMa<-survfit(Surv(tempo,censura)~ppeso, conf.int=F)
+summary(KMa)
+plot(KMa,conf.int=F, xlab="Tempo", ylab="S(t)",lty=c(1,2),col=c(1,2))
+legend(100,1,lty=c(1,2),cex=0.7,c("nao perdeu peso","perdeu peso"),
+       col=c(1,2))
+
+survdiff(Surv(tempo,censura)~ppeso, rho=0)
+survdiff(Surv(tempo,censura)~ppeso, rho=1)
+
+####COVARIAVEL COMORBIDADE
+
+
+KMt<-survfit(Surv(tempo,censura)~comorbi, conf.int=F)
+summary(KMt)
+plot(KMt,conf.int=F, xlab="Tempo", ylab="S(t)",lty=c(1,2),col=c(1,2))
+legend("topright",cex=0.7,lty=c(1,2),c("comorbidade ausente",
+                                       "comorbidade presente"),col=c(1,2))
+
+survdiff(Surv(tempo,censura)~comorbi, rho=0)
+survdiff(Surv(tempo,censura)~comorbi, rho=1)
+
+#COVARIAVEL LEUCOPENIA
+
+KMd<-survfit(Surv(tempo,censura)~leucopenia, conf.int=F)
+summary(KMd)
+plot(KMd,conf.int=F, xlab="Tempo", ylab="S(t)",lty=c(1,2),col=c(1,2))
+legend(50,1,lty=c(1,2),cex=0.7,c("leucopenia ausente","leucopenia presente"),
+       col=c(1,2))
+
+survdiff(Surv(tempo,censura)~leucopenia, rho=0)
+survdiff(Surv(tempo,censura)~leucopenia, rho=1)
+
+
+
+#TTT plot#
+require(AdequacyModel)
+TTT(tempo, col="red", lwd=2.5,
+    grid=TRUE, lty=2)
+
+################################Distribuicao Weibull######################################################
+
+mwe<-survreg(Surv(tempo,censura)~1, dist="weibull")
+mwe
+summary(mwe)
+
+alphaw<-exp(mwe$coefficients[1])
+alphaw
+
+gamaw<-1/mwe$scale
+gamaw
+
+n=length(tempo)
+pws<-2
+AICws<-(-2*mwe$loglik[1])+(2*pws)  
+
+AICcws<-AICws + ((2*pws*(pws+1))/(n-pws-1))
+
+BICws<-(-2*mwe$loglik[1]) + pws*log(n)
+
+medidasw<-cbind(AICws,AICcws,BICws)
+medidasw
+
+#### Dist. Log-normal ##
+
+mlognorm<-survreg(Surv(tempo,censura)~1, dist='lognorm')
+mlognorm
+
+mi<-mlognorm$coefficients[1]
+sigma<-mlognorm$scale
+
+plns<-2
+AIClns<-(-2*mlognorm$loglik[1])+(2*plns)
+
+AICclns<-AIClns + ((2*pws*(pws+1))/(n-plns-1))
+
+BIClns<-(-2*mlognorm$loglik[1]) + plns*log(n)
+
+medidasln<-cbind(AIClns,AICclns,BIClns)
+medidasln
+
+#### Dist. Log-logistica ##
+
+mloglogi<-survreg(Surv(tempo,censura)~1, dist='loglogistic')
+mloglogi
+
+alphall<-exp(mloglogi$coefficients[1])
+alphall
+
+gamall<- 1/mloglogi$scale
+gamall
+
+plls<-2
+AIClls<-(-2*mloglogi$loglik[1])+(2*plls)
+
+AICclls<-AIClls + ((2*pws*(pws+1))/(n-plls-1))
+
+BIClls<-(-2*mloglogi$loglik[1]) + plls*log(n)
+
+medidasll<-cbind(AIClls,AICclls,BIClls)
+medidasll
+
+
+##### Verificando o ajuste doS modeloS ############################################
+
+km<-survfit(Surv(tempo,censura)~1)
+time<-km$time         ### tempo de KM ###
+#time
+
+skm<-km$surv     ###  sobrevivência de Kaplan-Meier ###
+#skm
+
+swe<-exp(-(time/alphaw)^gamaw)  ###  sobrevivencia do modelo weibull ###
+
+slognorm<-pnorm((-log(time)+mi)/sigma)   ###  sobrevivencia do modelo log-normal ###
+
+sloglogi<-1/(1+(time/alphall)^gamall)  ###  sobrevivencia do modelo log-log?stico ###
+
+#par(mfrow=c(1,1))
+plot(km,conf.int=F, xlab="Tempos", ylab="S(t)")
+lines(c(0,time),c(1,swe),lty=2,col=2)
+lines(c(0,time),c(1,slognorm),lty=4,col=4)
+lines(c(0,time),c(1,sloglogi),lty=5,col=6)
+legend(18,0.4,lty=c(1,2,4,5),col=c(1,2,4,6),c("Kaplan-Meier","Weibull", "Log-Normal","Log-Logísitca"),bty="n",cex=0.8)
+
+##########dia 19/10 ###################
+#Modelo de Regressao - normal#
+y<-log(tempo)
+mregnorm<-survreg(Surv(y,censura)~1, dist='gaussian')  
+summary(mregnorm)
+
+## Selecao de covariavel ##
+
+#Passo 1 - ajustar modelos com uma unica covari?vel
+mregnorm1<-survreg(Surv(y,censura)~idade, dist='gaussian')  
+summary(mregnorm1)
+
+
+## Teste da Razao de Verossimilhanca ##
+
+lnorm<-mregnorm$log[1]       #logaritmo da verossimilhanca do modelo simples
+lnorm1<-mregnorm1$log[2]     #logaritmo da verossimilhanca do modelo com cov idade
+
+TRV<-2*(lnorm1-lnorm)
+TRV
+1-pchisq(TRV,1)
+
+mregnorm2<-survreg(Surv(y,censura)~sexo, dist='gaussian')  
+summary(mregnorm2)
+
+mregnorm3<-survreg(Surv(y,censura)~tumor, dist='gaussian')  
+summary(mregnorm3)
+
+
+
+novo=relevel(dados$gptumor,"Loco")
+head(novo)
+
+mregnorm3.1<-survreg(Surv(y,censura)~novo, dist='gaussian')  
+summary(mregnorm3.1)
+
+mregnorm4<-survreg(Surv(y,censura)~ppeso, dist='gaussian')  
+summary(mregnorm4)
+
+mregnorm5<-survreg(Surv(y,censura)~comorbi, dist='gaussian')  
+summary(mregnorm5)
+
+mregnorm6<-survreg(Surv(y,censura)~leucopenia, dist='gaussian')  
+summary(mregnorm6)
+
+
+#Passo 2 - modelo com todas as covari?veis significativas no passo 1
+mregnorm7<-survreg(Surv(y,censura)~idade+novo+ppeso+comorbi+leucopenia, dist='gaussian')  
+summary(mregnorm7)
+
+#Pr?ximo passo: an?lise de res?duo -
+
+mregnorm7<-survreg(Surv(y,censura)~idade+novo+ppeso+comorbi+leucopenia, dist='gaussian')  
+summary(mregnorm7)
+
+model.matrix(mregnorm7)
+x2<-model.matrix(mregnorm7)[,2]
+x3<-model.matrix(mregnorm7)[,3]
+x4<-model.matrix(mregnorm7)[,4]
+x5<-model.matrix(mregnorm7)[,5]
+x6<-model.matrix(mregnorm7)[,6]
+x7<-model.matrix(mregnorm7)[,7]
+
+
+###An?lise de Res?duo###
+
+#Cox-Snell#
+
+mi<-(mregnorm7$coeff[1]+ mregnorm7$coeff[2]*x2 +mregnorm7$coeff[3]*x3 +
+       mregnorm7$coeff[4]*x4 + mregnorm7$coeff[5]*x5 + mregnorm7$coeff[6]*x6 + mregnorm7$coeff[7]*x7)
+#ou
+mip<-mregnorm7$linear.predictors # mi=mip
+#
+Smod<-1-pnorm((y-mi)/mregnorm7$scale)
+ei<-(-log(Smod)) # res?duo de Cox-Snell para o modelo log-normal(FUNÇÃO DE RISCO ACUMULADA DO MODELO LOG-NORMAL)
+
+KMew<-survfit(Surv(ei,censura)~1,conf.int=F)
+te<-KMew$time  # res?duo de Cox-Snell
+ste<-KMew$surv #  por KM
+sexp<-exp(-te) #exponencial padrão
+
+par(mfrow=c(1,1))
+
+plot(ste,sexp, xlab="S(ei):Kaplan-Meier", ylab="S(ei):Exponencial padr?o")
+plot(KMew,conf.int=F, xlab="Res?duos de Cox-Snell", ylab="Sobreviv?ncia estimada")
+lines(te,sexp,lty=2, col=2)
+legend(.5,0.8,lty=c(1,2), col=c(1,2),c("Kaplan-Meier", "Exponencial padrao"), cex=0.8, bty="n")
