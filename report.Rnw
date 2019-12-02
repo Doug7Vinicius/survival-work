@@ -137,19 +137,19 @@ As variáveis registradas para cada paciente estão listadas na tabela a seguir.
 
 Esses dados estão disponíveis no arquivo ipec.csv, que está organizado para análise de sobrevivência usando os métodos não estendidos, isto é, com uma linha para cada paciente e sem covariáveis tempo-dependentes. 
 
-<<script0, echo = FALSE, message=FALSE>>=
+<<script0, echo = FALSE, message=FALSE, >>=
 library(kableExtra)
 library(knitr)
 library(dplyr)
-text_tbl <- data.frame(
+description <- data.frame(
   Variáveis = c("id","ini","fim","tempo","status","sexo","escola","idade","risco",
 "acompan","obito","anotrat","tratam","doença","propcp"),
   Descrição = c("identificação do paciente","data do diagnóstico da Aids(em dias)",
 "data do óbito (ou perda do paciente)","dias de sobrevivência do diagnóstico até o óbito","0 = censura, 1 = óbito","F = feminino, M = masculino","0 = sem escolaridade, 1 = ensino fundamental, 2 = ensino médio, 3 = ensino superior","idade na data do diagnóstico de Aids (20 a 68 anos)","0 = homossexual masculino, 1 = usuário de drogas injetáveis, 2 = transfusão, 3 = contato sexual com HIV+, 5 = hétero c/múltiplos parceiros, 6 = dois fatores de risco","acompanhamento: 0 = ambulatorial/hospital-dia, 1 = internação posterior, 2 = internação imediata","S = óbito, N = não óbito, I = ignorado","ano do início do tratamento (1990 a 2000), 9 = sem tratamento","terapia antirretroviral: 0 = nenhum, 1 = mono, 2 = combinada, 3 = potente","de apresentação: 1 = pcp, 2 = pcp pulmonar, 3 = pcp disseminada, 4 = toxoplasmose, 5 = sarcoma, 7 = outra doença, 8 = candidíase, 9 = duas doenças, 10 = herpes, 99 = definido por cd4","profilaxia para pneumocistis: 0 = sem profilaxia, 2 = primária, 3 = secundária, 4 = ambas")
 )
 
-kable(text_tbl, "latex", caption = "Descrição dos dados") %>%
-  kable_styling(full_width = F) %>% 
+kable(description, "latex", caption = "Descrição dos dados") %>%
+  kable_styling(full_width = F, font_size = 10, latex_options = "hold_position") %>% 
   column_spec(1, bold = T, color = "red") %>% 
   column_spec(2, width = "30em")
 @
@@ -187,7 +187,7 @@ km <- with(veteran, Surv(time, status))
 head(km,80)
 @
 
-<<figura1, echo=TRUE, fig.align='center',fig.height=4,fig.width=6,fig = TRUE, fig.cap="Função de Sobrevivência">>=
+<<script3, echo=TRUE, fig.align='center',fig.height=4,fig.width=6,fig = TRUE, fig.cap="Função de Sobrevivência">>=
 km_fit <- survfit(Surv(time, status) ~ 1, data=veteran)
 summary(km_fit, times = c(1,30,60,90*(1:10)))
 
