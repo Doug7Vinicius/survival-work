@@ -1,11 +1,12 @@
 \babel@toc {brazilian}{}
 \contentsline {chapter}{Lista de Figuras}{2}{chapter*.2}%
-\contentsline {chapter}{}{2}{chapter*.2}%
-\contentsline {chapter}{\numberline {1}Introdução}{3}{chapter.1}%
-\contentsline {chapter}{\numberline {2}Descrição do Banco de Dados}{4}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Desenvolvimento}{6}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Carregar os dados}{6}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Estimador de Kaplan-Meier}{6}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Modelo de Riscos Proporcionais de Cox}{9}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Resultados e Discusões}{12}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Considerações Finais}{13}{chapter.5}%
+\contentsline {chapter}{Lista de Tabelas}{3}{chapter*.3}%
+\contentsline {chapter}{}{3}{chapter*.3}%
+\contentsline {chapter}{\numberline {1}Introdução}{4}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Descrição do Banco de Dados}{5}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Desenvolvimento}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Carregar os dados}{7}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Estimador de Kaplan-Meier}{7}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Modelo de Riscos Proporcionais de Cox}{10}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Resultados e Discusões}{13}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Considerações Finais}{14}{chapter.5}%

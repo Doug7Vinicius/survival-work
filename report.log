@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.28)  2 DEC 2019 15:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.28)  2 DEC 2019 15:59
 entering extended mode
 **./report.tex
 (report.tex
@@ -1008,7 +1008,7 @@ LaTeX Info: Redefining \nameref on input line 104.
 \@outlinefile=\write4
 \openout4 = `report.out'.
 
-<img/unir-logo.jpg, id=42, 149.8097pt x 105.39375pt>
+<img/unir-logo.jpg, id=46, 149.8097pt x 105.39375pt>
 File: img/unir-logo.jpg Graphic file (type jpg)
 <use img/unir-logo.jpg>
 Package pdftex.def Info: img/unir-logo.jpg  used on input line 114.
@@ -1046,105 +1046,112 @@ l.162 \listoffigures
 
  [2
 
+] (report.lot)
+\tf@lot=\write7
+\openout7 = `report.lot'.
+
+
+[3
+
 ]
 Cap\'{\i }tulo 1.
-[3
+[4
 
 ]
 Cap\'{\i }tulo 2.
 
-Package xcolor Warning: Incompatible color definition on input line 188.
+Package xcolor Warning: Incompatible color definition on input line 192.
 
-[4
+[5
 
-] [5]
+] [6]
 Cap\'{\i }tulo 3.
 
-Package xcolor Warning: Incompatible color definition on input line 245.
+Package xcolor Warning: Incompatible color definition on input line 249.
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 247.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 251.
 
-Package xcolor Warning: Incompatible color definition on input line 273.
+Package xcolor Warning: Incompatible color definition on input line 277.
 
 
-Package xcolor Warning: Incompatible color definition on input line 291.
+Package xcolor Warning: Incompatible color definition on input line 295.
 
-[6
+[7
 
 ]
-<figure/script3-1.pdf, id=95, 433.62pt x 289.08pt>
-File: figure/script3-1.pdf Graphic file (type pdf)
-<use figure/script3-1.pdf>
-Package pdftex.def Info: figure/script3-1.pdf  used on input line 319.
+<figure/figura1-1.pdf, id=107, 433.62pt x 289.08pt>
+File: figure/figura1-1.pdf Graphic file (type pdf)
+<use figure/figura1-1.pdf>
+Package pdftex.def Info: figure/figura1-1.pdf  used on input line 323.
 (pdftex.def)             Requested size: 433.61894pt x 289.09251pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 328.
+Package xcolor Warning: Incompatible color definition on input line 334.
 
-<figure/script4-1.pdf, id=96, 433.62pt x 289.08pt>
+<figure/script4-1.pdf, id=108, 433.62pt x 289.08pt>
 File: figure/script4-1.pdf Graphic file (type pdf)
 <use figure/script4-1.pdf>
-Package pdftex.def Info: figure/script4-1.pdf  used on input line 335.
+Package pdftex.def Info: figure/script4-1.pdf  used on input line 341.
 (pdftex.def)             Requested size: 433.61894pt x 289.09251pt.
 
-Package xcolor Warning: Incompatible color definition on input line 345.
+Package xcolor Warning: Incompatible color definition on input line 351.
 
-[7 <./figure/script3-1.pdf>]
-<figure/script5-1.pdf, id=109, 433.62pt x 289.08pt>
+[8 <./figure/figura1-1.pdf>]
+<figure/script5-1.pdf, id=121, 433.62pt x 289.08pt>
 File: figure/script5-1.pdf Graphic file (type pdf)
 <use figure/script5-1.pdf>
-Package pdftex.def Info: figure/script5-1.pdf  used on input line 357.
+Package pdftex.def Info: figure/script5-1.pdf  used on input line 363.
 (pdftex.def)             Requested size: 433.61894pt x 289.09251pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 374.
+Package xcolor Warning: Incompatible color definition on input line 380.
 
-[8 <./figure/script4-1.pdf> <./figure/script5-1.pdf>]
-Overfull \hbox (138.00072pt too wide) in paragraph at lines 377--377
+[9 <./figure/script4-1.pdf> <./figure/script5-1.pdf>]
+Overfull \hbox (138.00072pt too wide) in paragraph at lines 383--383
 [][]\OT1/cmtt/m/n/10 cox[] []<-[] []coxph[][]([][]Surv[][](time, status)[] []~[
 ] []trt[] []+[] []celltype[] []+[] []karno[]                   []+[] []diagtime
 [] []+[] []age[] []+[] []prior ,[] []data[] []= vet)[][] 
  []
 
-<figure/script6-1.pdf, id=130, 433.62pt x 289.08pt>
+<figure/script6-1.pdf, id=142, 433.62pt x 289.08pt>
 File: figure/script6-1.pdf Graphic file (type pdf)
 <use figure/script6-1.pdf>
-Package pdftex.def Info: figure/script6-1.pdf  used on input line 421.
+Package pdftex.def Info: figure/script6-1.pdf  used on input line 427.
 (pdftex.def)             Requested size: 433.61894pt x 289.09251pt.
 
-Package xcolor Warning: Incompatible color definition on input line 432.
+Package xcolor Warning: Incompatible color definition on input line 438.
 
-[9]
-<figure/script7-1.pdf, id=135, 433.62pt x 289.08pt>
+[10]
+<figure/script7-1.pdf, id=147, 433.62pt x 289.08pt>
 File: figure/script7-1.pdf Graphic file (type pdf)
 <use figure/script7-1.pdf>
-Package pdftex.def Info: figure/script7-1.pdf  used on input line 466.
+Package pdftex.def Info: figure/script7-1.pdf  used on input line 472.
 (pdftex.def)             Requested size: 433.61894pt x 289.09251pt.
- [10 <./figure/script6-1.pdf>] [11 <./figure/script7-1.pdf>]
+ [11 <./figure/script6-1.pdf>] [12 <./figure/script7-1.pdf>]
 Cap\'{\i }tulo 4.
-[12
+[13
 
 ]
 Cap\'{\i }tulo 5.
 No file report.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 487.
-[13
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 493.
+[14
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 487.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 493.
  (report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 487.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 487.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 493.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 493.
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: E152F662A338AF7F232C74E39811CA36;596.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 487.
+(rerunfilecheck)             Checksum: 7E21B59DE01E45D011E0E9F39F71A48B;649.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 493.
  ) 
 Here is how much of TeX's memory you used:
- 24341 strings out of 492484
- 428781 string characters out of 3131044
- 559815 words of memory out of 3000000
- 28313 multiletter control sequences out of 15000+200000
+ 24351 strings out of 492484
+ 428917 string characters out of 3131044
+ 559867 words of memory out of 3000000
+ 28317 multiletter control sequences out of 15000+200000
  542402 words of font info for 66 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,11n,67p,3289b,793s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1156,9 +1163,9 @@ onts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
 amsfonts/cm/cmsl10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmtt10.pfb>
-Output written on report.pdf (15 pages, 227866 bytes).
+Output written on report.pdf (16 pages, 229826 bytes).
 PDF statistics:
- 203 PDF objects out of 1000 (max. 8388607)
- 25 named destinations out of 1000 (max. 500000)
- 111 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 215 PDF objects out of 1000 (max. 8388607)
+ 28 named destinations out of 1000 (max. 500000)
+ 119 words of extra memory for PDF output out of 10000 (max. 10000000)
 

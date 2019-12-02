@@ -112,6 +112,10 @@ Relatório apresentado à Disciplina de Análise de Sobrevivência do Curso de B
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\listoftables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \addcontentsline{toc}{chapter}{}      %manually add to TOC
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -183,7 +187,7 @@ km <- with(veteran, Surv(time, status))
 head(km,80)
 @
 
-<<script3, echo=TRUE, fig.align='center',fig.height=4,fig.width=6,fig = TRUE>>=
+<<figura1, echo=TRUE, fig.align='center',fig.height=4,fig.width=6,fig = TRUE, fig.cap="Função de Sobrevivência">>=
 km_fit <- survfit(Surv(time, status) ~ 1, data=veteran)
 summary(km_fit, times = c(1,30,60,90*(1:10)))
 

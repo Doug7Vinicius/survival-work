@@ -2,9 +2,9 @@
 
 Implementado em:
 
-  - latex knitr;
+  - R Sweave usando knitr;
   
-  - slides knitr;
+  - slides R markdown;
   
   
 Novos ajustes em andamento...
