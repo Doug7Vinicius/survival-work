@@ -18,6 +18,14 @@
 %\usepackage{bookmark}
 %\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=black,linkcolor=black,urlcolor=blue,filecolor=black,bookmarksopen=true]{hyperref}
 \usepackage{titleps}
+
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{siunitx}    
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{bm}	
 %----------------------------------------------
 %
 \usepackage[colorlinks = true,
@@ -43,11 +51,11 @@ anchorcolor = blue]{hyperref}
 %
 %------------------------------------------------------------------------------------
 \begin{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Capa
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{titlepage} %iniciando a "capa"
 	\begin{center} %centralizar o texto abaixo
@@ -68,7 +76,6 @@ anchorcolor = blue]{hyperref}
 %término da "capa"
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %Folha de Rosto
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,35 +99,64 @@ Relatório apresentado à Disciplina de Análise de Sobrevivência do Curso de B
 %fim da folha de rosto
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %sumário
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tableofcontents 	
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \listoffigures %lista de figuras
-%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \addcontentsline{toc}{chapter}{}      %manually add to TOC
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %texto
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   \chapter{Introdução}
   
-Iniciando...rsrsrs
+
 
 
   \chapter{Descrição do Banco de Dados}
   
+Os dados são provenientes de coortes hospitalares de pacientes portadores de HIV. A primeira coorte é constituída dos pacientes portadores de HIV atendidos entre 1986 e 2000 no Instituto de Pesquisa Clínica Evandro Chagas (Ipec/Fiocruz). Dessa coorte, obteve-se uma amostra de 193 indivíduos que foram diagnosticados como portadores de Aids (critério CDC 1993) durante o período de acompanhamento.
+
+As variáveis registradas para cada paciente estão listadas na tabela a seguir. Elas foram obtidas a partir dos prontuários clínicos, como descrito em Campos (2005). Nesse artigo também se encontra uma análise exploratória completa desses dados, assim como a análise de sobrevivência em Aids, utilizando modelos não paramétricos e modelos de Cox clássicos.
+
+Esses dados estão disponíveis no arquivo ipec.csv, que está organizado para análise de sobrevivência usando os métodos não estendidos, isto é, com uma linha para cada paciente e sem covariáveis tempo-dependentes. 
+
+<<script0, echo = FALSE, message=FALSE>>=
+library(kableExtra)
+library(knitr)
+library(dplyr)
+text_tbl <- data.frame(
+  Variáveis = c("id","ini","fim","tempo","status","sexo","escola","idade","risco",
+"acompan","obito","anotrat","tratam","doença","propcp"),
+  Descrição = c("identificação do paciente","data do diagnóstico da Aids(em dias)",
+"data do óbito (ou perda do paciente)","dias de sobrevivência do diagnóstico até o óbito","0 = censura, 1 = óbito","F = feminino, M = masculino","0 = sem escolaridade, 1 = ensino fundamental, 2 = ensino médio, 3 = ensino superior","idade na data do diagnóstico de Aids (20 a 68 anos)","0 = homossexual masculino, 1 = usuário de drogas injetáveis, 2 = transfusão, 3 = contato sexual com HIV+, 5 = hétero c/múltiplos parceiros, 6 = dois fatores de risco","acompanhamento: 0 = ambulatorial/hospital-dia, 1 = internação posterior, 2 = internação imediata","S = óbito, N = não óbito, I = ignorado","ano do início do tratamento (1990 a 2000), 9 = sem tratamento","terapia antirretroviral: 0 = nenhum, 1 = mono, 2 = combinada, 3 = potente","de apresentação: 1 = pcp, 2 = pcp pulmonar, 3 = pcp disseminada, 4 = toxoplasmose, 5 = sarcoma, 7 = outra doença, 8 = candidíase, 9 = duas doenças, 10 = herpes, 99 = definido por cd4","profilaxia para pneumocistis: 0 = sem profilaxia, 2 = primária, 3 = secundária, 4 = ambas")
+)
+
+kable(text_tbl, "latex", caption = "Descrição dos dados") %>%
+  kable_styling(full_width = F) %>% 
+  column_spec(1, bold = T, color = "red") %>% 
+  column_spec(2, width = "30em")
+@
+
+
+
+
 
   
   
-  \chapter{}
+  \chapter{Desenvolvimento}
   
     \section{Carregar os dados}
     
@@ -147,14 +183,12 @@ km <- with(veteran, Surv(time, status))
 head(km,80)
 @
 
-
 <<script3, echo=TRUE, fig.align='center',fig.height=4,fig.width=6,fig = TRUE>>=
 km_fit <- survfit(Surv(time, status) ~ 1, data=veteran)
 summary(km_fit, times = c(1,30,60,90*(1:10)))
 
 autoplot(km_fit)
 @
-
 
 <<script4, echo=TRUE, fig.align='center',fig.height=4,fig.width=6,fig = TRUE>>=
 km_trt_fit <- survfit(Surv(time, status) ~ trt, data=veteran)
