@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.28)  2 DEC 2019 11:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.28)  2 DEC 2019 17:49
 entering extended mode
 **./test.tex
 (test.tex
@@ -359,29 +359,24 @@ Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
 LaTeX Info: Redefining \bm on input line 209.
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\inputenc.sty"
-Package: inputenc 2018/08/11 v1.3c Input encoding file
-\inpenc@prehook=\toks18
-\inpenc@posthook=\toks19
-)
 ("C:\Program Files\MiKTeX 2.9\tex/latex/upquote\upquote.sty"
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 ) (test.aux)
 \openout1 = `test.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
 
 ("C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -390,12 +385,12 @@ LaTeX Font Info:    ... okay on input line 64.
 \scratchbox=\box55
 \nofMPsegments=\count269
 \nofMParguments=\count270
-\everyMPshowfont=\toks20
+\everyMPshowfont=\toks18
 \MPscratchCnt=\count271
 \MPscratchDim=\dimen175
 \MPnumerator=\count272
 \makeMPintoPDFobject=\count273
-\everyMPtoPDFconversion=\toks21
+\everyMPtoPDFconversion=\toks19
 ) ("C:\Program Files\MiKTeX 2.9\tex/latex/epstopdf-pkg\epstopdf-base.sty"
 Package: epstopdf-base 2019/11/24 v2.7 Base part for package epstopdf
 
@@ -526,43 +521,43 @@ Dictionary: translator-basic-dictionary, Language: English
 File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 64.
+(Font)              <7> on input line 63.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 64.
+(Font)              <5> on input line 63.
 
 
-Package xcolor Warning: Incompatible color definition on input line 68.
+Package xcolor Warning: Incompatible color definition on input line 67.
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 70.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 69.
 
-Package xcolor Warning: Incompatible color definition on input line 75.
-
-
-Package xcolor Warning: Incompatible color definition on input line 77.
+Package xcolor Warning: Incompatible color definition on input line 74.
 
 
-Package xcolor Warning: Incompatible color definition on input line 79.
+Package xcolor Warning: Incompatible color definition on input line 76.
 
 
-Package xcolor Warning: Incompatible color definition on input line 81.
+Package xcolor Warning: Incompatible color definition on input line 78.
 
 
-Overfull \hbox (426.74327pt too wide) in paragraph at lines 85--85
+Package xcolor Warning: Incompatible color definition on input line 80.
+
+
+Overfull \hbox (426.74327pt too wide) in paragraph at lines 84--84
 [][]\OT1/cmtt/m/n/10 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 Proin vehicula tempor ex. Morbi malesuada sagittis turpis, at venenatis nisl lu
 ctus a. "[][],[][] 
  []
 
 
-Overfull \hbox (505.49258pt too wide) in paragraph at lines 86--86
+Overfull \hbox (505.49258pt too wide) in paragraph at lines 85--85
 [][]\OT1/cmtt/m/n/10 "In eu urna at magna luctus rhoncus quis in nisl. Fusce in
  velit varius, posuere risus et, cursus augue. Duis eleifend aliquam ante, a al
 iquet ex tincidunt in. "[][],[][] 
  []
 
 
-Overfull \hbox (468.7429pt too wide) in paragraph at lines 87--87
+Overfull \hbox (468.7429pt too wide) in paragraph at lines 86--86
 [][]\OT1/cmtt/m/n/10 "Vivamus venenatis egestas eros ut tempus. Vivamus id est 
 nisi. Aliquam molestie erat et sollicitudin venenatis. In ac lacus at velit sce
 lerisque mattis. "[][] 
@@ -575,12 +570,12 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.96 \end{kframe}\begin{table}[H]
+l.95 \end{kframe}\begin{table}[H]
                                  
 Option `H' ignored and `p' used.
 
 
-Overfull \hbox (12.27113pt too wide) in paragraph at lines 98--107
+Overfull \hbox (12.27113pt too wide) in paragraph at lines 97--106
  [][] 
  []
 
@@ -589,10 +584,10 @@ Overfull \hbox (12.27113pt too wide) in paragraph at lines 98--107
 {C:/Users/Douglas/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 [2] (test.aux) ) 
 Here is how much of TeX's memory you used:
- 14864 strings out of 492484
- 298551 string characters out of 3131044
- 328335 words of memory out of 3000000
- 19128 multiletter control sequences out of 15000+200000
+ 14844 strings out of 492484
+ 298177 string characters out of 3131044
+ 327815 words of memory out of 3000000
+ 19111 multiletter control sequences out of 15000+200000
  536672 words of font info for 40 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,10n,67p,296b,317s stack positions out of 5000i,500n,10000p,200000b,50000s
